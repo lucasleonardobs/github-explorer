@@ -3,12 +3,6 @@ import { RepositoryItem } from "./RepositoryItem";
 
 import "../styles/repositories.scss";
 
-const repository = {
-    name: "github-explorer",
-    description: "Web app in React to consume Github API",
-    link: "https://github.com/lucasleonardobs/github-explorer.git",
-};
-
 export function RepositoryList() {
     const [repositories, setRepositories] = useState([]);
 
@@ -18,14 +12,12 @@ export function RepositoryList() {
             .then(data => setRepositories(data))
     }, [])
 
-    consoe.log(repositories)
-
     return (
         <section className="repository-list">
             <h1>Repository List</h1>
 
             <ul>
-                <RepositoryItem repository={repository}/>
+                {repositories.map(repository => <RepositoryItem key={repository.name} repository={repository}/>)}
             </ul>
         </section>
     )
